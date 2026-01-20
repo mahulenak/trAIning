@@ -1,0 +1,414 @@
+<!-- PROMPTING -->
+<section id="prompting">
+  <div class="section section--muted">
+    <h1 class="section__title">Jak pracovat s LLMs</h1>
+
+    <div class="section__body">
+
+      <!-- PROMPTOVÁNÍ -->
+      <h2>Promptování</h2>
+
+      <!-- 1) ÚVOD -->
+      <p>
+        LLM není „telepat" a bez kontextu hádá, co po něm chcete. Představte si ho jako velmi schopného,
+        ale juniorního asistenta: má obrovské znalosti, je rychlý a ochotný, ale neví nic o vašem
+        konkrétním kontextu, preferencích ani o tom, co považujete za „dobrý výsledek". Když mu
+        řeknete jen „udělej mi prezentaci", nepočítejte s žádoucím výsledkem. Když mu vysvětlíte
+        kontext toho, co po něm chcete, bude výsledek nesrovnatelně lepší.
+      </p>
+      <p>
+        Prompt je proto v praxi vaše <strong>programovací rozhraní</strong>: když ho napíšete jasně,
+        model má méně prostoru si domýšlet. <strong>Prompt engineering</strong> znamená navrhovat
+        a ladit prompty tak, aby výstupy byly kvalitní a konzistentní a ideálně i levnější díky
+        menšímu počtu iterací. V praxi to znamená předem si ujasnit několik věcí: co přesně má být
+        výstupem a k čemu bude použit, pro koho se píše (jazyk, úroveň, tón), jaká data modelu dáváte,
+        v jakém formátu chcete odpověď (JSON, tabulka, odrážky, ...) a jak poznáte, že je výstup
+        správný (kritéria kvality, citace zdrojů, možnost říct „nevím").
+      </p>
+
+      <!-- 3) TECHNIKY PROMPTOVÁNÍ -->
+
+      <!-- ZÁKLADNÍ TECHNIKY -->
+      <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--clr-text-muted, #6b7280);">Základní techniky</h4>
+
+      <div class="collapsible" data-collapsible>
+        <button class="collapsible__toggle" aria-expanded="false" aria-controls="technique-clear" id="technique-btn-clear">
+          <span class="technique-badge technique-badge--basic">basic</span> Buďte jasní a konkrétní
+        </button>
+        <div class="collapsible__panel" id="technique-clear" role="region" aria-labelledby="technique-btn-clear" hidden>
+          <p><strong>Kdy použít:</strong> Skoro vždy a zejména když model tápe nebo dává příliš obecné odpovědi.</p>
+          <p>Jasná a konkrétní formulace promptu výrazně zvyšuje kvalitu výstupu. Uveďte účel a publikum. Model má pak menší prostor si domýšlet zadání.</p>
+          <pre class="technique-detail__example">Shrň následující text pro laiky do 5 bodů.
+Zdůrazni hlavní rizika.
+Maximální délka: 900 znaků.
+Formát: číslované odrážky.
+Pokud něco není v textu jasné, napiš 'není uvedeno'.</pre>
+        </div>
+      </div>
+
+      <div class="collapsible" data-collapsible>
+        <button class="collapsible__toggle" aria-expanded="false" aria-controls="technique-format" id="technique-btn-format">
+          <span class="technique-badge technique-badge--basic">basic</span> Specifikujte formát výstupu
+        </button>
+        <div class="collapsible__panel" id="technique-format" role="region" aria-labelledby="technique-btn-format" hidden>
+          <p><strong>Kdy použít:</strong> Když chcete konzistenci nebo automatizované zpracování.</p>
+          <p>Specifikace struktury pomáhá modelu držet se očekávaného formátu. Pokud výstup dále kopírujete, je vhodné explicitně uvést i formát zápisu (např. Markdown). Model pak použije správné nadpisy, seznamy a strukturu bez nutnosti ručních úprav.</p>
+          <pre class="technique-detail__example">Vrať výstup v Markdown formátu:
+
+1) Nadpis (H2, max 10 slov)
+2) Sekce „Proč" – 3 odrážky (důvody)
+3) Sekce „Jak" – 3 odrážky (postup)
+4) Sekce „Nejistoty" – co nelze rozhodnout bez dalších informací</pre>
+        </div>
+      </div>
+
+      <div class="collapsible" data-collapsible>
+        <button class="collapsible__toggle" aria-expanded="false" aria-controls="technique-shot" id="technique-btn-shot">
+          <span class="technique-badge technique-badge--basic">basic</span> Zero-shot / One-shot / Few-shot
+        </button>
+        <div class="collapsible__panel" id="technique-shot" role="region" aria-labelledby="technique-btn-shot" hidden>
+          <p><strong>Kdy použít:</strong> Když potřebujete konzistentní interpretaci, klasifikaci nebo strukturovaný výstup z nejednoznačného textu.</p>
+          <p>Rozdíl je v tom, zda modelu jen řeknete, co má dělat (zero-shot), nebo mu to ukážete na jednom příkladu (one-shot) nebo několika příkladech (few-shot). Příklady učí model rozhodovací logiku spolehlivěji než obecná pravidla, proto je few-shot vhodný zejména u hraničních případů.</p>
+          <pre class="technique-detail__example">Na základě textového popisu z laboratorního nebo provozního deníku
+urči, zda záznam popisuje:
+
+STANDARDNÍ_PRŮBĚH
+ODCHYLKU
+ZÁVAŽNÝ_PROBLÉM
+
+Příklady:
+
+Vstup: "Měření proběhlo standardně, bez pozorovaných komplikací."
+Výstup: STANDARDNÍ_PRŮBĚH
+
+Vstup: "Během přípravy vzorku došlo ke krátkému zdržení, které však nemělo vliv na výsledek."
+Výstup: ODCHYLKA
+
+Vstup: "Vzorek byl při manipulaci pravděpodobně kontaminován a výsledky nelze považovat za validní."
+Výstup: ZÁVAŽNÝ_PROBLÉM
+
+Nyní klasifikuj:
+Vstup: "{záznam}"
+Výstup:</pre>
+        </div>
+      </div>
+
+      <div class="collapsible" data-collapsible>
+        <button class="collapsible__toggle" aria-expanded="false" aria-controls="technique-role" id="technique-btn-role">
+          <span class="technique-badge technique-badge--basic">basic</span> Používejte role / systémový prompt
+        </button>
+        <div class="collapsible__panel" id="technique-role" role="region" aria-labelledby="technique-btn-role" hidden>
+          <p><strong>Kdy použít:</strong> Když chcete konzistentní tón nebo úroveň odbornosti napříč odpověďmi.</p>
+          <p>Role (systémový prompt) nastavuje chování modelu po celou dobu konverzace, takže nemusíte opakovat stejné instrukce v každém promptu a model si je „pamatuje".</p>
+          <p>K podobnému účelu lze dnes v ChatGPT využít i vlastní modely (Custom GPTs) s nahranými dokumenty. Takový model může mít jako referenční kontext například normy, metodiky, manuály, interní reporty nebo jiné odborné podklady a stane se tak dlouhodobě kontextově kvalifikovaným specialistou.</p>
+          
+          <p style="margin-top: 1rem;"><strong>Kde se to nastavuje:</strong></p>
+          <ul class="list" style="margin-bottom: 1rem;">
+            <li>V konverzačních rozhraních (např. webových chatech) bývá možnost zadat pokročilé instrukce / systémové chování v rámci nastavení konverzace nebo Custom Instructions.</li>
+            <li>V API se role nastavuje explicitně jako samostatná zpráva typu <code>system</code>, oddělená od uživatelských dotazů.</li>
+            <li>V Custom GPT můžete nahrát vlastní dokumenty a nastavit je jako kontext pro daný GPT.</li>
+          </ul>
+          
+          <pre class="technique-detail__example">Jsi specialista na gama spektrometrii s hlubokou znalostí principů měření,
+kalibrace, detekce a interpretace spekter radionuklidů.
+Odpovídej věcně, přesně a konzistentně se standardy radiační ochrany
+a best practices v spektrometrii.
+Vycházej z normativních materiálů, metodik a interních manuálů,
+pokud jsou k dispozici.
+Pokud si nejsi jistý, uveď to explicitně a popiš, jaké informace chybí k rozhodnutí.</pre>
+        </div>
+      </div>
+
+      <!-- POKROČILÉ TECHNIKY -->
+      <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--clr-text-muted, #6b7280);">Pokročilé techniky</h4>
+
+      <div class="collapsible" data-collapsible>
+        <button class="collapsible__toggle" aria-expanded="false" aria-controls="technique-xml" id="technique-btn-xml">
+          <span class="technique-badge technique-badge--advanced">advanced</span> Používejte strukturování pomocí tagů (XML)
+        </button>
+        <div class="collapsible__panel" id="technique-xml" role="region" aria-labelledby="technique-btn-xml" hidden>
+          <p><strong>Kdy použít:</strong> U složitějších promptů, kde je potřeba jasně oddělit instrukce, data a formát výstupu.</p>
+          <p>Strukturování pomocí tagů snižuje riziko záměny kontextu a zvyšuje spolehlivost odpovědí. Tagy si můžete vymyslet libovolně (např. <code>&lt;instructions&gt;</code>, <code>&lt;data&gt;</code>, <code>&lt;schema&gt;</code>, <code>&lt;output_format&gt;</code>). Nejde o standardní XML, ale o logické oddělení částí promptu.</p>
+          <pre class="technique-detail__example">&lt;instructions&gt;
+Shrň následující text tak, aby:
+- výstup obsahoval 5 stručných bodů,
+- každý bod byl max. 120 znaků,
+- byly odděleny podle témat,
+- obsahoval krátký nadpis pro každý bod.
+&lt;/instructions&gt;
+
+&lt;data&gt;
+{dlouhý_text}
+&lt;/data&gt;
+
+&lt;output_format&gt;
+{
+  "summary": [
+    {
+      "heading": "…",
+      "point": "…"
+    }
+  ]
+}
+&lt;/output_format&gt;</pre>
+        </div>
+      </div>
+
+      <div class="collapsible" data-collapsible>
+        <button class="collapsible__toggle" aria-expanded="false" aria-controls="technique-cot" id="technique-btn-cot">
+          <span class="technique-badge technique-badge--advanced">advanced</span> Používejte Chain of Thought (krokové uvažování)
+        </button>
+        <div class="collapsible__panel" id="technique-cot" role="region" aria-labelledby="technique-btn-cot" hidden>
+          <p><strong>Kdy použít:</strong> Pro úlohy vyžadující analýzu a plánování.</p>
+          <p>Model postupuje krok za krokem, což zvyšuje úspěšnost u složitějších úloh. Chain of Thought neznamená jen přidat jednu větu typu „uvažuj krok za krokem", ale jasně oddělit logické fáze úvahy od samotného výsledku, aby bylo možné snadno pochopit a ověřit, jak model dospěl ke své odpovědi.</p>
+          <pre class="technique-detail__example">Vyřeš následující úlohu v několika krocích:
+
+1) Nejprve si definuj všechny relevantní informace ze zadání.
+2) Poté postupně analyzuj každý dílčí aspekt úlohy
+   a napiš krátké odůvodnění pro každý krok.
+3) Na základě analýzy navrhni konkrétní řešení.
+4) Nakonec uveď **pouze finální výsledek** bez kroků.
+
+Úloha:
+Máš soubor laboratorních záznamů s následujícími problémy:
+- krátkodobé zvýšení pozadí,
+- nejasné události v rámci provozu,
+- drobné odchylky od standardních hodnot.
+
+Urči pro každý případ:
+a) zda se jedná o běžnou odchylku, potenciální riziko, nebo incident,
+b) jaké důvody a logické kroky vedly k tomuto závěru,
+c) popiš, jaké informace bys dále potřeboval ověřit.
+
+Struktura odpovědi:
+- **Krokové uvažování:** postupná analýza s odůvodněním
+- **Finální rozhodnutí:** krátký souhrn klasifikací bez detailního odůvodnění</pre>
+        </div>
+      </div>
+
+      <div class="collapsible" data-collapsible>
+        <button class="collapsible__toggle" aria-expanded="false" aria-controls="technique-consistency" id="technique-btn-consistency">
+          <span class="technique-badge technique-badge--advanced">advanced</span> Zajišťujte konzistenci (prefill, řetězení)
+        </button>
+        <div class="collapsible__panel" id="technique-consistency" role="region" aria-labelledby="technique-btn-consistency" hidden>
+          <p><strong>Kdy použít:</strong> Když potřebujete stabilní a opakovatelné výstupy napříč více dotazy nebo v rámci delší práce.</p>
+          <p>Konzistence se dosahuje kombinací pevného formátu, rozdělení úlohy do kroků a předvyplnění výstupu (prefill). Na rozdíl od pouhé specifikace formátu model v tomto případě nedostává instrukci formát vytvořit, ale má doplnit již připravenou strukturu. To výrazně snižuje variabilitu odpovědí a usnadňuje další zpracování.</p>
+          <pre class="technique-detail__example">- Kontext:
+  1)
+- Shrnutí:
+  1)
+  2)
+  3)
+- Doporučení:
+  1)
+  2)
+  3)
+
+Text:
+"{vložený_text}"
+
+Doplň hodnoty podle textu.
+Nepiš nic jiného mimo tuto strukturu.</pre>
+        </div>
+      </div>
+
+      <div class="collapsible" data-collapsible>
+        <button class="collapsible__toggle" aria-expanded="false" aria-controls="technique-tot" id="technique-btn-tot">
+          <span class="technique-badge technique-badge--advanced">advanced</span> Používejte více variant a reflexi (Tree of Thoughts)
+        </button>
+        <div class="collapsible__panel" id="technique-tot" role="region" aria-labelledby="technique-btn-tot" hidden>
+          <p><strong>Kdy použít:</strong> Když není jasné, jaký přístup je nejlepší, nebo když řešíte problém s více možnými cestami.</p>
+          <p>Místo snahy dostat z modelu jednu správnou odpověď je často efektivnější nechat ho navrhnout více variant, každou z nich krátce zhodnotit a teprve potom se rozhodnout. Model je silný v paralelním generování alternativ. Často se ukáže, že nejlepší řešení vznikne kombinací více přístupů.</p>
+          <p><strong>Tree of Thoughts znamená:</strong></p>
+          <ul class="list" style="margin-bottom: 1rem;">
+            <li>rozvětvit řešení do několika směrů,</li>
+            <li>každou variantu krátce reflektovat (výhody, rizika),</li>
+            <li>vědomě vybrat nebo upravit další krok.</li>
+          </ul>
+          <pre class="technique-detail__example">Navrhni 3 různé varianty řešení následujícího problému.
+
+U každé varianty:
+- stručně popiš přístup,
+- uveď hlavní výhody a nevýhody,
+- naznač, v jakém kontextu by byla vhodná.
+
+Nakonec:
+- varianty porovnej,
+- navrhni, zda je lepší jednu z nich zvolit,
+  nebo kombinovat prvky z více variant.</pre>
+        </div>
+      </div>
+
+      <!-- BEZPEČNOSTNÍ TECHNIKY -->
+      <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--clr-text-muted, #6b7280);">Bezpečnost a spolehlivost</h4>
+
+      <div class="collapsible" data-collapsible>
+        <button class="collapsible__toggle" aria-expanded="false" aria-controls="technique-out" id="technique-btn-out">
+          <span class="technique-badge technique-badge--safety">safety</span> Dejte modelu možnost „nevím"
+        </button>
+        <div class="collapsible__panel" id="technique-out" role="region" aria-labelledby="technique-btn-out" hidden>
+          <p><strong>Kdy použít:</strong> Když pracujete s neúplnými daty nebo hrozí domýšlení faktů.</p>
+          <p>Explicitní možnost přiznat nejistotu snižuje riziko halucinací.</p>
+          <pre class="technique-detail__example">Pokud nemáš dost informací, odpověz „nelze rozhodnout"
+a uveď, jaké informace chybí.</pre>
+        </div>
+      </div>
+
+      <p style="margin-top: 1.5rem; color: var(--clr-text-muted, #6b7280); font-size: 0.9rem;">
+        Toto je základní přehled nejběžnějších metod. Pro hlubší studium doporučujeme
+        <a href="https://www.promptingguide.ai/techniques" target="_blank" rel="noopener">Prompting Guide</a>,
+        který nabízí detailní vysvětlení a další pokročilé přístupy.
+      </p>
+
+      <!-- DALŠÍ TIPY PRO EFEKTIVNÍ PRÁCI S LLM -->
+      <h2>Další tipy pro efektivní práci s LLM</h2>
+
+      <!-- Tip: Efektivní využití kontextového okna -->
+      <h3>Efektivní využití kontextového okna</h3>
+      <p>
+        Začal model v průběhu konverzace ztrácet nit a blábolit? Může jít o důsledek přetíženého kontextu. Zkrátka jste do kontextového okna napsali tolik různých věcí, že jste milého chatbota zmátli a udělali z něj žvatlajícího idiota.
+      </p>
+      <p>
+        Proto je efektivní brát konverzaci jako dočasný pracovní prostor. Pokud se práce protáhne nebo výrazně změní směr, je lepší chat vědomě ukončit a pokračovat v novém s krátkým, cíleným shrnutím.
+      </p>
+      <p>
+        Shrnutí neslouží jako archiv, ale jako destilace toho, co je pro další krok podstatné: cíl, aktuální stav a klíčová rozhodnutí. Detaily, varianty a slepé uličky je vhodné zahodit. V novém chatu pak přenášíte rozhodnutí, ne historii.
+      </p>
+      <p>
+        💡 <strong>Tip:</strong> Jeden chat = jedno téma. Při změně cíle nebo fáze práce založte nový.
+      </p>
+      <p>
+        ⚠️ <strong>Častá chyba:</strong> Kopírování dlouhé historie místo krátkého shrnutí.
+      </p>
+      <p>
+        Pamatujte, že do kontextového okna se započítávají i odpovědi samotného LLM, nejen vaše vstupy.
+      </p>
+
+      <!-- Info bublina: Příklad promptu pro přenesení práce -->
+      <div class="collapsible" data-collapsible>
+        <button class="collapsible__toggle" aria-expanded="false" aria-controls="collapsible-panel-context-prompt" id="collapsible-button-context-prompt">
+        <b>VÍCE:</b> Příklad promptu pro přenesení práce do nové konverzace
+        </button>
+
+        <div class="collapsible__panel" id="collapsible-panel-context-prompt" role="region" aria-labelledby="collapsible-button-context-prompt" hidden>
+          <pre class="technique-detail__example" style="margin: 0;">Shrň dosavadní konverzaci do strukturovaného dokumentu,
+který bude sloužit jako startovní kontext pro nový chat.
+
+Představ si, že shrnutí předáváš kolegovi,
+který konverzaci neviděl a má na ni plynule navázat.
+
+Požadavky:
+- 5–7 bodů
+- ke každému bodu krátké vysvětlení (max. 50 slov)
+- jasně uveď cíl, aktuální stav, klíčová rozhodnutí a další krok
+- zachovej všechny informace nutné k pokračování
+- vynech detaily, varianty a slepé uličky
+
+Výstup:
+- strukturovaný text (číslované body)
+- bez historie a bez omáčky
+- připravený k přímému vložení do nového chatu</pre>
+        </div>
+      </div>
+
+      <!-- Tip: Postupujte po krocích -->
+      <h3>Postupujte po krocích a nechte si výstup zkontrolovat</h3>
+      <p>
+        Nesnažte se vyřešit celý úkol jedním promptem. LLM je váš nový kolega v kanceláři a tak k němu přistupujte. Stejně jako u člověka je příjemnější (a efektivnější) postupovat po krocích: nejdřív návrh, potom kritika a teprve nakonec finální verze. Každý krok má jiný cíl a dává modelu jasnější zadání.
+      </p>
+      <p>
+        Užitečný postup je nechat model „sám sobě oponovat". Po vytvoření návrhu si vyžádejte kritické zhodnocení (slabá místa, rizika, nejasnosti). U důležitějších výstupů se vyplatí použít druhý model nebo nový chat jako nezávislého recenzenta, podobně jako když si necháte práci projít jiným kolegou.
+      </p>
+      <p>
+        💡 <strong>Tip:</strong> Představte si, že zadáváte práci juniornímu asistentovi: návrh → připomínky → oprava → finální verze.
+      </p>
+
+      <!-- Info bublina: Ukázkový prompt návrh-kritika-oprava -->
+      <div class="collapsible" data-collapsible>
+        <button class="collapsible__toggle" aria-expanded="false" aria-controls="collapsible-panel-review-prompt" id="collapsible-button-review-prompt">
+        <b>VÍCE:</b> Ukázkový prompt: návrh → kritika → oprava
+        </button>
+
+        <div class="collapsible__panel" id="collapsible-panel-review-prompt" role="region" aria-labelledby="collapsible-button-review-prompt" hidden>
+          <pre class="technique-detail__example" style="margin: 0;">1) Navrhni implementační plán integrace algoritmu v souboru `alg.py`
+   do existující webové aplikace.
+
+   Zaměř se zejména na:
+   - ověřování a sanitaci uživatelských vstupů
+   - chybové stavy a jejich ošetření
+   - hranice odpovědnosti mezi frontendem a backendem
+
+   V této fázi se zaměř jen strukturu a logiku řešení.
+
+2) Nyní se chovej jako zkušený softwarový architekt.
+   Projdi si výše uvedený plán jako návrh od kolegy a kriticky zhodnoť:
+   - slabá místa návrhu
+   - bezpečnostní a provozní rizika
+   - nejasnosti nebo chybějící rozhodnutí
+
+   Buď konkrétní a věcný.
+
+3) Na základě této oponentury navrhni upravenou verzi implementačního plánu.
+   Zachovej části, které fungují, a změň pouze problematické body.
+   U každé změny stručně vysvětli důvod úpravy.</pre>
+        </div>
+      </div>
+
+      <!-- Tip: Pozitivní instrukce -->
+      <h3>Pozitivní instrukce fungují lépe</h3>
+      <p>
+        Při zadávání úkolů je obvykle vhodnější říkat, co má model udělat, než čemu se má vyhnout. Negativní instrukce („nedělej", „nezmiňuj", „vyhni se") bývají nejednoznačné a model si je může vyložit příliš široce nebo přehnaně opatrně, což často vede k neúplnému nebo zvláštně omezenému výstupu.
+      </p>
+      <p>
+        Pozitivně formulované instrukce dávají modelu jasný cíl: jak má výstup vypadat, jaký má mít rozsah nebo na co se má zaměřit. Tam, kde je potřeba stanovit jasné hranice, dává smysl pozitivní zadání doplnit o konkrétní a úzký zákaz. Hlavní směr by ale měl vždy určovat popis požadovaného výsledku.
+      </p>
+
+      <!-- Info bublina: Nesprávný prompt -->
+      <div class="collapsible" data-collapsible>
+        <button class="collapsible__toggle" aria-expanded="false" aria-controls="collapsible-panel-negative-prompt" id="collapsible-button-negative-prompt">
+        <b>⚠️ Nesprávný prompt</b>
+        </button>
+
+        <div class="collapsible__panel" id="collapsible-panel-negative-prompt" role="region" aria-labelledby="collapsible-button-negative-prompt" hidden>
+          <pre class="technique-detail__example" style="margin: 0;">Neodpovídej příliš dlouze.
+Nezabíhej do detailů.
+Nezmiňuj vedlejší souvislosti.</pre>
+        </div>
+      </div>
+
+      <!-- Info bublina: Správný prompt -->
+      <div class="collapsible" data-collapsible>
+        <button class="collapsible__toggle" aria-expanded="false" aria-controls="collapsible-panel-positive-prompt" id="collapsible-button-positive-prompt">
+        <b>✅ Správný prompt</b>
+        </button>
+
+        <div class="collapsible__panel" id="collapsible-panel-positive-prompt" role="region" aria-labelledby="collapsible-button-positive-prompt" hidden>
+          <pre class="technique-detail__example" style="margin: 0;">Shrň téma jednou větou.
+Zaměř se pouze na hlavní myšlenku.
+Odpověď udrž stručnou a věcnou.</pre>
+        </div>
+      </div>
+
+      <!-- Tip: Kontrola výstupu -->
+      <h3>Kontrola výstupu</h3>
+      <p>
+        Výstupy LLM nejsou ověřené závěry, ale pracovní návrhy. Model generuje pravděpodobný text, ne potvrzená fakta. Proto je důležité ověřit klíčová fakta a logiku manuálně. LLM vám s tím ale může pomoci, pokud ho k tomu už během řešení instruujete.
+      </p>
+
+      <!-- Info bublina: Jak promptovat kontrolu výsledku -->
+      <div class="collapsible" data-collapsible>
+        <button class="collapsible__toggle" aria-expanded="false" aria-controls="collapsible-panel-verify-prompt" id="collapsible-button-verify-prompt">
+        <b>VÍCE:</b> Jak promptovat kontrolu výsledku
+        </button>
+
+        <div class="collapsible__panel" id="collapsible-panel-verify-prompt" role="region" aria-labelledby="collapsible-button-verify-prompt" hidden>
+          <pre class="technique-detail__example" style="margin: 0;">Projdi výstup a u každého bodu uveď:
+- na jakém předpokladu stojí
+- co je podloženo fakty/zdroji
+- co je nejisté a mělo by se ověřit</pre>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
