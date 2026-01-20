@@ -1,0 +1,110 @@
+/* Collapsible component */
+.collapsible {
+  border: 1px solid var(--brand-dark);
+  border-radius: var(--small-border);
+  background: white;
+  max-width: 800px;
+}
+
+.collapsible__toggle {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: 0;
+  font-family: "Funnel Display", sans-serif;
+  text-align: left;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.collapsible__toggle:focus-visible {
+  outline: 2px solid var(--brand-yellow);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.collapsible__toggle::before {
+  content: "▸";
+  display: inline-block;
+  transition: transform 200ms ease;
+}
+
+.collapsible__toggle[aria-expanded="true"]::before {
+  transform: rotate(90deg);
+}
+
+.collapsible__panel {
+  overflow: hidden;
+  padding: 0 1rem;
+  border-top: 1px solid var(--brand-dark);
+  font-family: Source Serif 4, serif;
+}
+
+.collapsible__panel b{
+  color: var(--brand-dark);
+}
+
+/* Optional: smoother content appearance */
+
+.collapsible__panel > * {
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.collapsible__panel[data-open="true"] > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Technique badges for collapsible prompting methods */
+.technique-badge {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.2em 0.6em;
+  border-radius: 4px;
+  margin-right: 0.25rem;
+}
+
+.technique-badge--basic {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.technique-badge--advanced {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.technique-badge--safety {
+  background: #fce7f3;
+  color: #9d174d;
+}
+
+/* Prompt example blocks */
+.prompt-example {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  font-family: "Fira Code", "Consolas", "Monaco", monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
+  color: #495057;
+}
+
+/* Small reference text */
+.reference-small {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin-top: 0.5rem;
+}
