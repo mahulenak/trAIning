@@ -13,7 +13,7 @@
           Pravda je, že tak trochu platí obojí 🙂, ale stejně jako u většiny věcí kolem LLM velmi záleží na kontextu a na tom, co od nich očekáváme.
         </p>
         <p>
-          Nejlepší cestou, jak si v tom udělat jasno, je stručně si vysvětlit, jak jazykové modely zhruba fungují. Díky tomu získáme realističtější představu o tom, co od nich lze čekat a kde naopak narážejí na své limity. V následující části se proto podíváme na několik základních principů: jak se tyto modely učí, jak reprezentují text a jakým způsobem generují odpovědi.
+          Udělejme si v tom trochu jasněji tím, že si stručně vysvětlíme, jak jazykové modely zhruba fungují. Díky tomu získáme realističtější představu o tom, co od nich lze čekat a kde naopak narážejí na své limity. Zaměříme se na tyto základní oblasti: jak se tyto modely učí, jak reprezentují text a jakým způsobem generují odpovědi.
         </p>
 
         <p><a href="#AIIntro" class="link--large">⇣ AI, ML, LLM… aneb co je vlastně co</a></p>
@@ -27,16 +27,16 @@
         <section id="AIIntro">  </section>
         <h1>AI, ML, LLM… aneb co je vlastně co</h1>
         <p>
-          Pojem AI se dnes nadužívá natolik, že občas připomíná spíš zaklínadlo, které má pomoci získat grant nebo působit, že „jedeme trendy". Právě proto má smysl si hned na začátku alespoň rámcově ujasnit, co se pod tímto pojmem skutečně myslí.
+          Pojem AI se dnes nadužívá natolik, že občas připomíná spíš zaklínadlo, které má pomoci získat grant nebo působit, že „jedeme trendy". Pojďme si proto hned na začátku alespoň rámcově ujasnit, co se pod tímto pojmem skutečně myslí.
         </p>
         <p>
-          Umělá inteligence je zastřešující pojem pro systémy, které se chovají „chytře", od jednoduchých pravidlových řešení (např. filtrování e-mailů) až po pokročilé systémy pracující s daty. Jednou z oblastí AI je strojové učení kde se systémy učí z dat a tím zlepšují své chování. Jedním z důležitých přístupů ve strojovém učení jsou neuronové sítě, velmi volně inspirované fungováním lidského mozku. Ty se dnes používají u řady úloh, kde je potřeba rozpoznávat vzory v datech, například v obrazu, zvuku nebo textu.
+          Umělá inteligence je zastřešující pojem pro systémy, které se chovají „chytře", od jednoduchých pravidlových řešení (např. filtrování e-mailů) až po pokročilé systémy pracující s komplexními daty. Jednou z oblastí AI je strojové učení kde se systémy učí z dat a tím zlepšují své chování. Sem spadají i neuronové sítě, velmi volně inspirované fungováním lidského mozku. Ty se dnes používají u řady úloh, kde je potřeba rozpoznávat vzory v datech, například v obrazu, zvuku nebo textu.
         </p>
         <p>
-          Generativní modely představují specializovanou skupinu modelů, často založených právě na neuronových sítích. Dokážou vytvářet nový obsah, jako je text, obrázky, zvuk nebo kód. Mezi ně patří i velké jazykové modely (LLM), které se zaměřují na práci s přirozeným jazykem a kam patří nástroje typu ChatGPT.
+          Generativní modely pak tvoří specializovanou skupinu, často založenou právě na neuronových sítích. Jejich schopností je vytvářet nový obsah, jako je text, obrázky, zvuk nebo kód. Patří sem i velké jazykové modely (LLM), které se zaměřují na práci s přirozeným jazykem a mezi něž spadají nástroje typu ChatGPT.
         </p>
         <p>
-          V běžné řeči se tyto pojmy často zaměňují. Nechceme slovíčkařit, ale přece jen je užitečné vědět, jak spolu jednotlivé pojmy souvisejí.
+          V běžné řeči se pojmy AI a LLM často zaměňují. Pokud je však jasný kontext, obvykle to nepředstavuje problém.
         </p>
 
         <!-- Obr. AI / ML / LLM -->
@@ -52,16 +52,16 @@
         </figure>
 
         <!-- Co je neuronová síť -->
-        <section id="NeuronovaSit"> </section> 
+        <section id="NeuronovaSit"> </section>
         <h1>Neuronové sítě, jazykové modely a proč to celé funguje</h1>
         <p>
-          Neuronová síť je matematický model, který je volně inspirovaný fungováním neuronů v lidském mozku. Dá se na ni dívat jako na jakýsi „matematický mozek", složený z velkého množství propojených uzlů (neuronů), které společně zpracovávají informace. Neuronová síť je popsána pomocí velkého množství parametrů (tzv. vah). Ty určují, jak silně spolu jednotlivé části sítě komunikují. Tyto parametry nejsou pevně dané a během trénování se postupně upravují na základě dat, aby síť dávala lepší výsledky. Pokud má síť mnoho vrstev nad sebou, mluvíme o hluboké neuronové síti.
+          Neuronová síť je matematický model, který je volně inspirovaný fungováním neuronů v lidském mozku. Dá se na ni dívat jako na jakýsi „matematický mozek", složený z velkého množství propojených uzlů, které společně zpracovávají informace. Neuronová síť je popsána pomocí velkého množství parametrů, které určují, jak silně spolu jednotlivé části sítě komunikují. Tyto parametry nejsou pevně dané a během trénování se postupně upravují na základě dat, aby síť dávala lepší výsledky. Pokud má síť mnoho vrstev nad sebou, mluvíme o tzv. hluboké neuronové síti.
         </p>
         <p>
-          Učení funguje zjednodušeně tak, že síť dostane vstup (například text), vytvoří výstup a ten se porovná s tím, co bychom chtěli, aby správně vzniklo. Pokud se síť splete, její parametry se lehce upraví. Tento proces se opakuje znovu a znovu nad velkým množstvím dat. Mechanismus, který tyto úpravy řídí, se nazývá zpětné šíření chyby (backpropagation) a často se kombinuje s optimalizačními algoritmy typu SGD. Právě takto trénované hluboké neuronové sítě dnes tvoří základ velkých jazykových modelů (LLM).
+          Učení neuronové sítě lze zjednodušeně popsat tak, že síť dostane vstup (například text), který postupně prochází jejími jednotlivými vrstvami, kde se pomocí vážených kombinací a nelineárních funkcí vypočítá výsledný výstup. Ten se následně porovná s požadovaným správným výsledkem. Pokud se výstup liší, dojde k mírné úpravě parametrů. Tento postup se opakuje mnohokrát nad rozsáhlým množstvím dat. Proces, který tyto úpravy řídí, se nazývá zpětné šíření chyby (backpropagation) a obvykle se kombinuje s optimalizačními algoritmy, například typu SGD (stochastic gradient descent). Právě tímto způsobem trénované hluboké neuronové sítě dnes tvoří základ velkých jazykových modelů (LLM).
         </p>
         <p>
-          Díky obrovskému množství parametrů a dat se tyto modely dokážou naučit složité jazykové vzory, například gramatiku, význam slov nebo kontext v delších textech. Neznamená to ale, že „rozumí" textu jako člověk; spíše velmi dobře odhadují, co pravděpodobně následuje.
+          Díky obrovskému množství parametrů a dat se tyto modely dokážou naučit složité jazykové vzory, například gramatiku, význam slov nebo kontext v delších textech. Nepracují však s významem v lidském smyslu, ale s pravděpodobnostními vztahy mezi slovy a jejich posloupnostmi.
         </p>
 
         <!-- Poznámka: Větší model = lepší? -->
@@ -72,7 +72,7 @@
 
           <div class="collapsible__panel" id="collapsible-panel-vetsi-model" role="region" aria-labelledby="collapsible-button-vetsi-model" hidden>
             <p>
-              Ne nutně. Vždy záleží na konkrétním úkolu. Menší, specializovaný model může v úzké oblasti podat lepší výsledky než nejnovější monstrum od OpenAI. Nevýhodou je, že obvykle hůře zobecňuje a mimo svou specializaci rychle naráží na limity. Na druhou stranu je lze často provozovat lokálně na vlastním počítači a jejich odezva může být výrazně rychlejší než u velkých modelů běžících v cloudu. Je to logické – menší model potřebuje pro predikci nižší počet operací (hlavně maticového násobení). Obecně sice platí, že větší počet parametrů často znamená vyšší schopnosti (např. podle tzv. Chinchilla scaling laws), ale nejde o univerzální pravidlo.
+              Ne nutně. Vždy záleží na konkrétním úkolu. Menší, specializovaný model může v úzké oblasti podat lepší výsledky než nejnovější monstrum od OpenAI. Nevýhodou je, že obvykle hůře zobecňuje a mimo svou specializaci rychle naráží na své limity. Na druhou stranu je lze často provozovat lokálně na vlastním počítači a jejich odezva může být výrazně rychlejší než u velkých modelů běžících v cloudu. Menší modely jsou svižnější, protože potřebují pro predikci nižší počet operací (hlavně maticového násobení). Obecně sice platí, že větší počet parametrů často souvisí s vyššími schopnostmi modelu nejde však o univerzální pravidlo (viz Chinchilla scaling laws).
             </p>
           </div>
         </div>
@@ -85,7 +85,7 @@
 
           <div class="collapsible__panel" id="collapsible-panel-chinchilla" role="region" aria-labelledby="collapsible-button-chinchilla" hidden>
             <p>
-              <strong>Chinchilla scaling laws</strong> popisují optimální vztah mezi velikostí modelu (počet parametrů) a množstvím trénovacích dat (počet tokenů) pro daný výpočetní rozpočet. Studie DeepMind ukázala, že pro dosažení co nejlepšího výkonu by počet trénovacích tokenů měl být asi 20× větší než počet parametrů modelu – tedy model s 1 mld. parametrů by měl být trénován na zhruba 20 mld. tokenů.
+              <strong>Chinchilla scaling laws</strong> popisují optimální vztah mezi velikostí modelu (počet parametrů) a množstvím trénovacích dat (počet tokenů) pro daný výpočetní rozpočet. Studie DeepMind ukázala, že pro dosažení co nejlepšího výkonu by počet trénovacích tokenů měl být asi 20× větší než počet parametrů modelu a tedy model s 1 mld. parametrů by měl být trénován na zhruba 20 mld. tokenů.
             </p>
             <p>
               V matematické formě se Chinchilla scaling laws často vyjadřují skrze souvislost mezi výpočetními náklady $C$, počtem parametrů $N$ a počtem trénovacích tokenů $D$:
@@ -168,13 +168,10 @@
         </figure>
 
       <p>
-        Ještě před nástupem velkých jazykových modelů jste se možná setkali s chatboty na e-shopech, které slibují rychlou pomoc, ale často spíš obtěžují. I tyto systémy lze považovat za formu umělé inteligence, jsou však velmi jednoduché a tematicky omezené. Typicky fungují tak, že v textu hledají klíčová slova a na jejich základě vybírají předem připravené odpovědi bez skutečné práce s kontextem.
+        Pamatujete si na tragické e-shopové chatboty, které vás víceméně náhodně odkazovaly od čerta k ďáblu, až jste nakonec stejně volali na zákaznickou linku pro trochu lidského pochopení? I tyto systémy lze považovat za formu umělé inteligence, jsou však velmi jednoduché a tematicky silně omezené. Typicky fungují tak, že v textu vyhledávají klíčová slova a na jejich základě vybírají předem připravené odpovědi, aniž by skutečně pracovaly s kontextem.
       </p>
       <p>
-        Zásadní průlom u LLM přinesla architektura <b>transformer</b>, která umožňuje modelu pracovat s různými částmi textu najednou a lépe zachytit kontext, včetně vzdálených souvislostí v textu. Právě schopnost práce s kontextem je jedním z hlavních důvodů, proč dnešní jazykové modely působí výrazně „chytřeji" než starší přístupy.
-      </p>
-      <p>
-        Mimochodem, slovo <i>transformer</i> stojí i za písmenem „T" ve zkratce <b>GPT</b>. GPT znamená Generative Pre-trained Transformer:
+        To, že dnes na první pohled často nepoznáte, zda s vámi komunikuje člověk, nebo chatbot, je důsledkem zásadního průlomu, který přinesla architektura <b>transformer</b>. Ta umožňuje modelům zpracovávat různé části textu současně a výrazně lépe zachytit kontext a právě na něm se dnes láme křemíkový chleba. Mimochodem, právě slovo <i>transformer</i> stojí za písmenem „T" ve zkratce <b>GPT</b>. GPT znamená Generative Pre-trained Transformer:
       </p>
       <ul>
         <li><b>generative</b> – model vytváří nový obsah,</li>
@@ -182,7 +179,7 @@
         <li><b>transformer</b> – využívá architekturu založenou na mechanismu attention.</li>
       </ul>
       <p>
-        GPT tedy neoznačuje jeden konkrétní model (například ChatGPT), ale celou rodinu příbuzných modelů, které se liší velikostí, schopnostmi i oblastmi použití. Všechny spadají do širší kategorie velkých jazykových modelů (LLM).
+        Zkratka GPT tedy neoznačuje jeden konkrétní model (například ChatGPT), ale celou rodinu příbuzných modelů, které se liší velikostí, schopnostmi i oblastmi použití. Všechny tyto modely pak spadají do širší kategorie velkých jazykových modelů (LLM).
       </p>
 
         <section id="Transformery"> </section>
@@ -194,32 +191,22 @@
 
           <div class="collapsible__panel" id="collapsible-panel-basics-1" role="region" aria-labelledby="collapsible-button-basics-1" hidden>
             <p>
-              Transformery jsou typ neuronových sítí, které tvoří základ většiny současných generativních modelů, zejména jazykových modelů. Na rozdíl od starších přístupů nezpracovávají data postupně krok za krokem, ale pracují s celým vstupem najednou. Díky tomu dokážou efektivně zachytit širší kontext a lépe se uplatňují při práci s dlouhými texty, obrazy nebo obecně komplexními daty.
+              <b>Transformery</b> jsou typ neuronových sítí, které tvoří základ většiny současných generativních modelů, zejména jazykových modelů. Na rozdíl od starších přístupů nezpracovávají vstup postupně krok za krokem, ale pracují s celým vstupem najednou. Díky tomu dokážou efektivně zachytit kontext i napříč dlouhými texty.
             </p>
             <p>
-              Klíčovým prvkem transformerů je mechanismus <b>attention</b> (pozornosti). Ten umožňuje modelu rozhodovat, které části vstupu jsou v daném okamžiku důležité a jak spolu jednotlivé části souvisejí. Například při zpracování věty si model dokáže „všimnout", ke kterému podstatnému jménu se vztahuje zájmeno, nebo že dvě slova spolu významově souvisejí, i když jsou od sebe v textu daleko.
+              Jak to ty transformery dělají? Klíčovým pojmem je zde tzv. <b>attention mechanismus</b>, který vyhodnocuje vztahy mezi jednotlivými částmi vstupu. Model tak například dokáže určit, ke kterému podstatnému jménu se vztahuje zájmeno, nebo že dvě významově související slova patří k sobě, i když jsou v textu daleko od sebe. Attention v transformerech probíhá paralelně ve více „hlavách" (<b>attention heads</b>), z nichž každá se během trénování může specializovat na jiný typ souvislostí.
             </p>
             <p>
-              Důležité je, že attention v transformerech nefunguje jen jednou, ale ve více paralelních „hlavách" (attention heads). Každá z těchto hlav se může během trénování naučit sledovat jiný typ vztahů v datech. Některé hlavy se mohou zaměřovat například na:
-            </p>
-            <ul>
-              <li>syntaktické vztahy (kdo je podmět, co je přísudek),</li>
-              <li>významové souvislosti (slova se stejným nebo podobným významem),</li>
-              <li>odkazy a zájmena („on", „ona", „to", k čemu se vztahují),</li>
-              <li>strukturu textu (co patří k sobě v rámci věty, odstavce nebo dokumentu),</li>
-              <li>nebo třeba časovou či logickou návaznost.</li>
-            </ul>
-            <p>
-              Díky tomu si model skládá výsledné porozumění textu z více pohledů najednou, podobně jako kdyby se na stejný problém dívalo několik specialistů současně.
+              Funguje to trochu jako <b>čtenářský klub</b>. Všichni členové mají před sebou stejný text, čtou ho v kontextu celého příběhu a zároveň si podtrhávají pasáže, které považují za zajímavé. Každý se přitom soustředí na jiné aspekty jako například na postavy a jejich vztahy, opakující se motivy, vývoj děje v čase, hlavní témata nebo strukturu vyprávění. Výsledné porozumění vzniká až jejich kombinací, podobně jako transformer skládá výstupy jednotlivých attention heads do jedné reprezentace.
             </p>
             <p>
-              V praxi to znamená, že model dokáže zachytit vztahy napříč celým vstupem. U textu například pochopí, že pojem uvedený na začátku odstavce je důležitý i pro jeho závěr. U obrazových dat může attention zvýraznit oblasti obrazu, které jsou klíčové pro rozpoznání objektu, například konkrétní tvar, strukturu nebo detail.
+              Díky tomu model dokáže zachytit souvislosti napříč celým vstupem. U textu například rozpozná, že pojem uvedený na začátku odstavce je důležitý i pro jeho závěr, u obrazových dat se zaměří na oblasti klíčové pro rozpoznání objektu.
             </p>
             <p>
-              Mechanismus attention přiřazuje jednotlivým částem vstupu váhy podle jejich relevance a z těchto vážených informací vytváří vnitřní reprezentaci dat. Během trénování se model učí, kam má „směřovat pozornost", a tuto schopnost pak využívá při generování textu, shrnování dokumentů nebo predikci dalších kroků bez nutnosti ručně definovaných pravidel.
+              Technický princip attention lze přirovnat k tomu, jak model „rozkazuje" každému tokenu, aby se podíval na ostatní tokeny a zjistil, s kterými má největší souvislost. Z každého vstupního tokenu se pomocí naučených lineárních projekcí nejprve vytvoří tři vektorové reprezentace: <b>query</b> ($Q$), <b>key</b> ($K$) a <b>value</b> ($V$). Query je jako „dotaz" daného tokenu, key ukazuje charakter ostatních tokenů a value nese jejich obsah, který lze využít, pokud je relevantní. Pro každý pár tokenů se spočítá skalární součin mezi $Q$ a $K$ (měření podobnosti), tato skóre se škálují a normalizují pomocí softmax na váhy, které určují, jak moc se má brát v úvahu každé value. Tento postup zpracování „všech vůči všem" je jádrem <b>scaled dot-product attention</b>.
             </p>
             <p>
-              Pro názornou interaktivní vizualizaci a detailní popis doporučujeme: <a href="https://poloclub.github.io/transformer-explainer/" target="_blank" rel="noopener noreferrer">Transformer Explainer</a>.
+              Pro názornou interaktivní vizualizaci a popis doporučujeme: <a href="https://poloclub.github.io/transformer-explainer/" target="_blank" rel="noopener noreferrer">Transformer Explainer</a>.
             </p>
 
           </div>
@@ -229,13 +216,10 @@
         <section id="JakSeUci"> </section>
         <h1>Jak se LLM učí</h1>
         <p>
-          Velké jazykové modely (LLM) se učí z obrovských množství textu, z knih, odborných článků, encyklopedií, webových stránek, technických dokumentací, veřejných diskuzí apod. Někdy takový sběr dat naráží na otázky autorských práv a je zřejmé, že ne ke všem zdrojům se firmy v minulosti dostaly zcela legálně.
+          Velké jazykové modely (LLM) se učí z obrovského množství textu, které jejich tvůrci získali (ne vždy zcela legálně) především z internetu. Jednotliví poskytovatelé modelů používají různé metody filtrování, společným cílem je však získat jazykově bohatý a dostatečně kvalitní trénovací materiál, ze kterého se model naučí obecné jazykové struktury i specializovanější styly psaní.
         </p>
         <p>
-          Různí poskytovatelé modelů (OpenAI, Anthropic, Google, Meta a další) používají odlišné kombinace dat a různé metody jejich filtrování. Společným cílem je ale vždy totéž: získat co nejširší, jazykově bohatý a zároveň dostatečně kvalitní vzorek textu, ze kterého se model naučí obecné jazykové struktury i specializovanější styly psaní. Velká část práce nespočívá totiž jen ve sběru dat, ale právě v jejich pečlivém výběru, čištění a filtrování. Texty plné šumu, ironie, trollingu nebo nekonzistentních informací mohou model spíše zmást než naučit něco užitečného.
-        </p>
-        <p>
-          Jinými slovy: „vezmeme celý internet a hotovo" nefunguje. Kdyby model trénoval bez filtru třeba jen na náhodném výběru z Redditu, naučil by se sice rychle reagovat, ale zároveň by si osvojil řadu zvláštních návyků, které u asistenta většinou nechceme.
+          Kdyby model trénoval bez filtru třeba jen na náhodném výběru z Redditu, naučil by se sice rychle reagovat, ale zároveň by si osvojil řadu zvláštních návyků, které u asistenta většinou nechceme.
         </p>
         <p>
           Je také velmi důležité mít na paměti, že jazykový model:
@@ -246,45 +230,46 @@
           <li>aktivně nevyhledává informace, pokud k tomu není výslovně připojen (například přes vyhledávač).</li>
         </ul>
         <p>
-          Zjednodušeně řečeno: model si trénovací data uloží v silně komprimované podobě. Některá fakta zná lépe (ta, která se v datech objevovala často), jiná si nezapamatuje vůbec. Připomíná to studenta, který se noc před zkouškou nadrtil skripta a něco si pamatuje velmi přesně, něco mlhavě a něco vůbec.
+          Zjednodušeně řečeno, model si trénovací data ukládá v silně komprimované podobě. Některá fakta zná lépe (ta, která se v datech objevovala často), jiná si nezapamatuje vůbec. Připomíná to studenta, který se noc před zkouškou nadrtil skripta: něco si pamatuje velmi přesně, něco mlhavě a něco vůbec.
         </p>
 
         <!-- První fáze -->
         <section id="ZakladniTrenink"> </section>
-        <h2><b>První fáze:</b> Základní jazykový trénink</h2>
+        <h2><b>První fáze:</b> základní jazykový trénink</h2>
         <p>V první fázi je model předtrénován na obrovském množství textů. Během tohoto tréninku:</p>
         <ul>
           <li>dostává text rozdělený na malé jednotky zvané tokeny,</li>
           <li>učí se předpovídat následující token v sekvenci,</li>
-          <li>postupnou optimalizací milionů až miliard parametrů si vytváří vnitřní reprezentaci jazykových vzorů.</li>
+          <li>postupnou optimalizací miliard parametrů si vytváří vnitřní reprezentaci jazykových vzorů.</li>
         </ul>
         <p>
-          Výsledkem je neuronová síť s natrénovanými parametry (včetně attention mechanismů), která velmi dobře „umí jazyk". Neučí se ale fakta jako položky v databázi. Místo toho se učí statistické závislosti jazyka. Ví, co obvykle následuje po čem, co spolu souvisí a co zní pravděpodobně.
+          Výsledkem je neuronová síť s natrénovanými parametry (včetně mechanismů attention), která velmi dobře ovládá jazyk. Neučí se však fakta jako položky v databázi. Místo toho si osvojuje statistické závislosti jazyka a ví, co obvykle následuje po čem, co spolu souvisí a co zní pravděpodobně.
         </p>
         <p>
-          Po této fázi máme hotového jazykového specialistu–asociála: perfektně zná jazyky, ale netuší, jak komunikovat s lidmi. Umí generovat text, ale neví, že má být užitečný, slušný nebo že by měl odpovídat na otázky. To přijde až v další fázi výcviku.
+          Po této fázi máme hotového jazykového specialistu–asociála: perfektně ovládá jazyk, ale netuší, jak komunikovat s lidmi. Umí generovat text, ale neví, že má být užitečný, slušný nebo že by měl odpovídat na otázky. To přichází až v další fázi výcviku.
         </p>
 
         <!-- Druhá fáze -->
-        <section id="Finetuning"> </section> 
-        <h2><b>Druhá fáze:</b> Doladění a interakce</h2>
+        <section id="Finetuning"> </section>
+        <h2><b>Druhá fáze:</b> doladění a interakce</h2>
+        <p><i>Aneb nejde o to, co jsi řekl, ale jak jsi to řekl!!!</i></p>
         <p>
-          Aby byl model prakticky použitelný, následuje fáze doladění (fine-tuning). V této fázi se model učí reagovat na instrukce a komunikovat s člověkem. Používají se například:
+          Samotný jazykový asociál by příliš užitečný nebyl, proto následuje další fáze vzdělávání, označovaná jako <b>doladění</b> (fine-tuning). V této fázi se model učí reagovat na instrukce a komunikovat s člověkem. Používají se například:
         </p>
         <ul>
           <li>vzorové otázky a odpovědi,</li>
           <li>předepsané dialogy,</li>
-          <li>instrukce typu „shrň", „vysvětli", „porovnej", „navrhni".</li>
+          <li>instrukce typu shrň, vysvětli, porovnej, navrhni.</li>
         </ul>
         <p>
           Model se tak neučí jen co říkat, ale i jak to říkat. Tato fáze je klíčová pro to, aby LLM nepůsobil jako náhodný generátor textu, ale jako asistent, který smysluplně reaguje na zadání.
         </p>
 
         <!-- Třetí fáze -->
-        <section id="Reinforcement"> </section> 
-        <h2>Reinforcement learning: výcvik na lidi</h2>
+        <section id="Reinforcement"> </section>
+        <h2>Reinforcement learning: výcvik na lidech</h2>
         <p>
-          Některé modely procházejí ještě další fází zvanou <b>reinforcement learning from human feedback (RLHF)</b>, tedy učením z lidské zpětné vazby. Tato fáze už nepřidává nové znalosti o světě, ale učí model jak se chovat, aby jeho odpovědi byly pro lidi užitečné a přijatelné.
+          Některé modely procházejí ještě další fází zvanou <b>reinforcement learning from human feedback (RLHF)</b>, tedy učením z lidské zpětné vazby. Tato fáze už nepřidává nové znalosti o světě, ale učí model, jak se chovat, aby jeho odpovědi byly pro lidi užitečné a přijatelné.
         </p>
         <p>Proces probíhá zhruba takto:</p>
         <ul>
@@ -293,7 +278,7 @@
           <li>model se postupně učí preferovat odpovědi, které lidé hodnotí lépe.</li>
         </ul>
         <p>
-          Celý proces lze velmi dobře přirovnat ke kynologickému výcviku. Model zkouší různé „triky" a podle reakce lidí se učí, které z nich má opakovat častěji. A stejně jako u výcviku psa platí, že záleží na tom, kdo drží pamlsky. Model se neučí „správné odpovědi", ale ty, které konkrétní skupina lidí považuje za žádoucí.
+          Celý proces lze dobře přirovnat ke kynologickému výcviku. Model zkouší různé triky a podle reakce lidí se učí, které z nich má opakovat častěji. A stejně jako u výcviku psa platí, že záleží na tom, kdo drží pamlsky. Model se neučí správné odpovědi, ale ty, které konkrétní skupina lidí považuje za žádoucí.
         </p>
         <p>
           Výsledkem je model, který se naučil především to, jak odpovídat tak, aby to lidem vyhovovalo.
@@ -364,50 +349,19 @@
         </div>
 
         <p>
-          Samotná čísla by ale byla dost neužitečná, takže přichází další krok: <a href="#Embeddingy">embeddingy</a>. Každému tokenu je přiřazena souřadnice ve vektorovém prostoru o velmi vysoké dimenzi (řádově tisíce rozměrů). Tento vektor funguje jako číselný otisk významu a kontextu.
+          Samotná čísla by ale byla dost neužitečná, takže přichází další krok: <a href="#Embeddingy">embeddingy</a>. Každému tokenu je přiřazen vektor ve velmi vysokodimenzionálním prostoru (řádově tisíce rozměrů). Tento vektor funguje jako číselný otisk významu a kontextu.
         </p>
         <p>
-          Existují i specializované embeddingové modely, jejichž jediným úkolem je převádět text do tohoto vektorového prostoru. Ať už jde o samostatný model nebo součást LLM, výsledkem je prostor, ve kterém jsou vektory uspořádány tak, že významově podobné tokeny leží blízko sebe, zatímco nesouvisející pojmy jsou daleko.
+          Existují i specializované embeddingové modely, jejichž jediným úkolem je převádět text do tohoto vektorového prostoru. Ať už jde o samostatný model, nebo součást LLM, výsledkem je prostor, v němž jsou vektory uspořádány tak, že významově podobné tokeny leží blízko sebe, zatímco nesouvisející pojmy jsou od sebe vzdálené.
         </p>
         <p>
-          V tomto vektorovém prostoru pak začnou platit zajímavé věci:
+          S takto vzniklými vektory lze pracovat jak jste zvyklí z geometrie, tj. lze je sčítat, odečítat a porovnávat jejich směr i vzdálenost. Zajímavé je, že se v embeddingovém prostoru objevují konzistentní významové vztahy. Klasickým (a dnes už legendárním) příkladem je:
         </p>
-        <ul>
-          <li>tokeny s podobným významem leží blízko sebe,</li>
-          <li>rozdíly mezi vektory mohou reprezentovat vztahy,</li>
-          <li>jazyk se mění v geometrii.</li>
-        </ul>
-
-        <p>
-          Pokud máme k dispozici vektory, můžeme s nimi pracovat podobně jako v běžné geometrii, sčítat je, odečítat a porovnávat jejich směr a vzdálenost. Právě díky tomu se v embeddingovém prostoru objevují konzistentní významové vztahy. Klasický (a dnes už legendární) příklad je:
-        </p>
-        <p style="text-align: center; font-size: 1.1em; font-weight: bold;">
-          vektor(král) − vektor(muž) + vektor(žena) ≈ vektor(královna)
+        <p style="text-align: center; font-size: 1.2em;">
+          $$\overrightarrow{\text{král}} - \overrightarrow{\text{muž}} + \overrightarrow{\text{žena}} \approx \overrightarrow{\text{královna}}$$
         </p>
         <p>
-          Model samozřejmě netuší, co je monarchie nebo pohlaví. Jen se z dat naučil, že určitý významový rozdíl se v tomto prostoru chová jako konzistentní směr. Podobné „směry" odpovídají různým aspektům významu – například roli, pohlaví, časovému zasazení nebo míře abstrakce.
-        </p>
-
-        <!-- Vzdálenosti slov v prostoru - Notecard-->
-        <div class="section section--note">
-          <h3 class="section__title section__title--note">Vzdálenosti slov v prostoru</h3>
-
-          <p>Podobně jsou si blízké pojmy jako:</p>
-          <ul>
-            <li>král — královna,</li>
-            <li>auto — vozidlo,</li>
-            <li>učitel — škola,</li>
-            <li>lékař — nemocnice.</li>
-          </ul>
-          <p>A naopak velmi vzdálené jsou třeba:</p>
-          <ul>
-            <li>kočka — kvark,</li>
-            <li>matematika — banán.</li>
-          </ul>
-        </div>
-
-        <p>
-          Důležité je, že u moderních LLM není význam slova pevně daný. Stejné slovo má jinou reprezentaci podle kontextu – „klíč" ve větě „ztratil jsem klíč od dveří" a „houslový klíč" skončí na úplně jiných místech v prostoru.
+          Model samozřejmě netuší, co je monarchie nebo pohlaví. Jen se z dat naučil, že určitý významový rozdíl se v tomto prostoru chová jako konzistentní směr. Podobné „směry" odpovídají různým významovým aspektům. Důležité je, že u moderních LLM není význam slova pevně daný. Stejné slovo má jinou reprezentaci podle kontextu a proto „klíč" ve větě „ztratil jsem klíč od dveří" a „namaluj houslový klíč" skončí na úplně jiných místech v embedding prostoru.
         </p>
 
         <h3>Chápe to tedy model jako člověk?</h3>
@@ -547,10 +501,10 @@
           <li><strong>Top-p (nucleus sampling):</strong> model vybírá z takového počtu tokenů, aby jejich součet pravděpodobností dosáhl určité hranice (např. 90 %).</li>
         </ul>
         <p>
-          Oba přístupy mají stejný cíl: odříznout extrémně nepravděpodobné nesmysly, aniž by model musel jet úplně „na kolejích".
+          Oba přístupy mají stejný cíl: odříznout extrémně nepravděpodobné nesmysly, aniž by model musel jet úplně v daných kolejích.
         </p>
         <p>
-          Kromě toho lze podobný efekt často dosáhnout již instrukcí v promptu – například tím, že v zadání řeknete modelu „buď co nejvíc kreativní" nebo „drž se přesně zadání a odpovídej podle této šablony". Modely, které jsou trénovány následovat pokyny, obvykle takto formulované preference respektují a chování podle nich přizpůsobí.
+          Kromě toho lze podobného efektu dosáhnout již instrukcí v promptu. Řekněte modelu například „buď co nejvíc kreativní" nebo „drž se přesně zadání a odpovídej podle této šablony" a uvidíte, že obvykle takto formulované preference respektuje a upraví podle toho své výstupy.
         </p>
         <p>
           <strong>Model sám o sobě není kreativní ani opatrný. To, jak se chová, je přímý důsledek toho, jak mu nastavíme pravidla losování.</strong>

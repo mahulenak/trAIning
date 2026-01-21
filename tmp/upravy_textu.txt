@@ -1,0 +1,13 @@
+ <puvodni text>
+ Oba přístupy mají stejný cíl: odříznout extrémně nepravděpodobné nesmysly, aniž by model musel jet úplně „na kolejích".
+
+Kromě toho lze podobný efekt často dosáhnout již instrukcí v promptu – například tím, že v zadání řeknete modelu „buď co nejvíc kreativní" nebo „drž se přesně zadání a odpovídej podle této šablony". Modely, které jsou trénovány následovat pokyny, obvykle takto formulované preference respektují a chování podle nich přizpůsobí.
+
+Model sám o sobě není kreativní ani opatrný. To, jak se chová, je přímý důsledek toho, jak mu nastavíme pravidla losování. 
+</puvodni text>
+
+<novy text>
+ Oba přístupy mají stejný cíl: odříznout extrémně nepravděpodobné nesmysly, aniž by model musel jet úplně v daných kolejích.
+Kromě toho lze podobného efektu dosáhnout již instrukcí v promptu. Řekněte modelu například „buď co nejvíc kreativní" nebo „drž se přesně zadání a odpovídej podle této šablony" a uvidíte, že obvykle takto formulované preference respektuje a upraví podle toho své výstupy.
+Model sám o sobě není kreativní ani opatrný. To, jak se chová, je přímý důsledek toho, jak mu nastavíme pravidla losování. 
+</novy text>

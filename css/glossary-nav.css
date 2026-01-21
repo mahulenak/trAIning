@@ -1,0 +1,176 @@
+/* ==========================================================================
+   GLOSSARY NAVIGATION
+   Compact tag-based navigation with shared detail panel
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Tag Navigation Container
+   -------------------------------------------------------------------------- */
+.glossary-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+/* --------------------------------------------------------------------------
+   Individual Tags
+   -------------------------------------------------------------------------- */
+.glossary-tag {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--brand-dark);
+  border-radius: var(--small-border);
+  background: white;
+  font-family: "Funnel Display", sans-serif;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.glossary-tag:hover {
+  background-color: var(--brand-light);
+}
+
+.glossary-tag:focus-visible {
+  outline: 2px solid var(--brand-yellow);
+  outline-offset: 2px;
+}
+
+.glossary-tag.is-active {
+  background-color: var(--brand-dark);
+  color: white;
+}
+
+/* --------------------------------------------------------------------------
+   Detail Panel
+   -------------------------------------------------------------------------- */
+.glossary-detail {
+  margin-top: 1.5rem;
+  padding: 2rem;
+  border: 1px solid var(--brand-dark);
+  border-radius: var(--small-border);
+  background: white;
+  animation: glossarySlideIn 0.2s ease;
+}
+
+@keyframes glossarySlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.glossary-detail__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--brand-light);
+}
+
+.glossary-detail__title {
+  margin: 0;
+  font-family: "Funnel Display", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.glossary-detail__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--brand-light);
+  border-radius: 4px;
+  font-size: 1.25rem;
+  color: #999;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.glossary-detail__close:hover {
+  background: var(--brand-light);
+  color: var(--brand-dark);
+}
+
+.glossary-detail__close:focus-visible {
+  outline: 2px solid var(--brand-yellow);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Detail Body Content
+   -------------------------------------------------------------------------- */
+.glossary-detail__body {
+  font-family: "Source Serif 4", serif;
+  line-height: 1.7;
+}
+
+.glossary-detail__body p {
+  margin-bottom: 1rem;
+}
+
+.glossary-detail__body h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-family: "Funnel Display", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.glossary-detail__body ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.glossary-detail__body li {
+  margin-bottom: 0.5rem;
+}
+
+.glossary-detail__body pre {
+  background: #f5f5f5;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 0.9rem;
+}
+
+/* --------------------------------------------------------------------------
+   Hidden Terms Container (source content)
+   -------------------------------------------------------------------------- */
+.glossary-terms {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Images and figures inside detail
+   -------------------------------------------------------------------------- */
+.glossary-detail__body .image-card {
+  margin: 1.5rem 0;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .glossary-tag {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .glossary-detail {
+    padding: 1.25rem;
+  }
+
+  .glossary-detail__title {
+    font-size: 1.25rem;
+  }
+}
